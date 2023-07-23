@@ -1,0 +1,21 @@
+Swap Nodes in Pairs :
+
+Given a linked list, swap every two adjacent nodes and return its head. You must solve the problem without modifying the values in the list's nodes (i.e., only nodes themselves may be changed.)
+
+class Solution {
+    public ListNode swapPairs(ListNode head) {
+         if (head == null || head.next == null) {
+        return head;
+    }
+    
+    // Store the next node for recursion
+    ListNode nextNode = head.next;
+    
+    // Swap the current node and the next node
+    head.next = swapPairs(nextNode.next);
+    nextNode.next = head;
+    
+    // Return the new head (nextNode becomes the head after swapping)
+    return nextNode;
+    }
+}
