@@ -1,0 +1,52 @@
+Question 2: Find missing numbers in array -
+
+Description: Consider an array with N number of consecutive integers, in which few numbers are missing. Find and list down these missing numbers using Java.
+
+Sample input: arrNum = {1, 2, 4, 5, 6}
+
+Output: 3
+
+SOLUTION :
+ 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class MissingNumsInArray {
+    public static void main(String args[]) {
+     s
+        int[] arrNum2 = {1, 2, 4, 5, 6};
+        System.out.println("Missing numbers in arrNum2: " + findMissingNums(arrNum2));
+    }
+
+    public static String findMissingNums(int[] arrNum) {
+        Arrays.sort(arrNum);
+
+        List<Integer> missingNums = new ArrayList<>();
+        int min = arrNum[0];
+        int max = arrNum[arrNum.length - 1];
+
+        for (int i = min + 1; i < max; i++) {
+            boolean found = false;
+            for (int num : arrNum) {
+                if (num == i) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                missingNums.add(i);
+            }
+        }
+
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < missingNums.size(); i++) {
+            result.append(missingNums.get(i));
+            if (i < missingNums.size() - 1) {
+                result.append(", ");
+            }
+        }
+
+        return result.toString();
+    }
+}
